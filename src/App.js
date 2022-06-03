@@ -4,10 +4,14 @@ import {Button} from "@mui/material";
 import Api from "./api/api.js"
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import HomePage from "./container/home_page";
-import Test from "./container/test";
+import LoginView from "./container/LoginView";
 
 
 function App() {
+    const background = {
+
+    }
+
     const buttonStyles = {
         fontsize: 20,
         fontWeight: 700,
@@ -19,24 +23,26 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
         <BrowserRouter>
           <Routes>
-            <Route path={"/home_page"} element={<HomePage/>}>
-            </Route>
-            <Route path={"/test"} element={<Test/>}>
-            </Route>
+            <Route path={"/login"} element={<LoginView/>}/>
+            <Route path={"/"} element={
+                <>
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <p>
+                    Edit <code>src/App.js</code> and save to reload.
+                    </p>
+                    <a
+                    className="App-link"
+                    href="https://reactjs.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >
+                    Learn React
+                    </a>
+                </>
+            }/>
+            <Route path={"/home_page"} element={<HomePage/>}/>
           </Routes>
         </BrowserRouter>
         <Button

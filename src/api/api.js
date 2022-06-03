@@ -1,3 +1,5 @@
+import {getLocalStorage, setLocalStorage} from '../lib/localStorage'
+
 class Client {
     async call(method, endpoint, headers, body) {
         const options = {
@@ -15,6 +17,12 @@ class Client {
                 options.body = body;
             }
         }
+
+        const bearer = getLocalStorage('access_token');
+        if (bearer) {
+            headers['Authorization'] = 'Basic ' + bearer
+        }
+
         options.headers = headers;
 
         return await fetch(endpoint, options);
@@ -26,23 +34,31 @@ class Client {
             "/user/login",
             null,
             {email, password}
-        )
+        );
 
-        let body = ""
-
-        console.log(response)
-        if (response.ok) {
-            body = await response.json();
+        if (!response.ok) {
+            return null;
         }
-        console.log(body)
+
+        const body = await response.json();
+
+        setLocalStorage('access_token', body.token)
+
+        return true;
     }
 
     async getCollection() {
+        console.log("mama")
         const response = await this.call(
             "GET",
             "/product/collection"
         )
-        console.log(response);
+
+        if (!response.ok) {
+            return null;
+        }
+
+        return await response.json();
     }
 
 }
