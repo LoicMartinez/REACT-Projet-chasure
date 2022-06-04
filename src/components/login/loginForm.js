@@ -7,7 +7,7 @@ import FormControl from "@mui/material/FormControl";
 
 function LoginForm({values, onLoginChanged}) {
     return (
-        <FormControl variant="standard">
+        <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
             <InputLabel htmlFor="input-with-icon-adornment">
                 With a start adornment
             </InputLabel>

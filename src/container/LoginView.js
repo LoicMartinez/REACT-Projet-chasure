@@ -7,6 +7,7 @@ import Api from "../api/api";
 import LoginForm from "../components/login/loginForm";
 import PasswordForm from "../components/login/passwordForm";
 import {useNavigate} from "react-router-dom";
+import {injectUser} from "../contexts/userContext";
 
 const style = {
     card: {
@@ -38,7 +39,8 @@ function LoginView() {
                         if (!response) {
                             setLoginError(true);
                         } else {
-                            setLoginError(false)
+                            setLoginError(false);
+                            //injectUser({connected:true});
                             Api.getCollection().then(response2 => console.log(response2));
                             navigation('/');
                             //const navigate = useNavigate();
@@ -47,14 +49,14 @@ function LoginView() {
                 )
             ;
         }
-        , [values]);
+        , [values, navigation]);
 
     const showLoginError = useCallback(() => {
         if (!loginError) {
             return false;
         }
-        return <p style={{ color: 'red' }}>Connexion echoué</p>
-    }, [loginError])
+        return (<p style={{ color: 'red' }}>Connexion echoué</p>);
+    }, [loginError]);
 
     return(
         <Card sx={style.card}>

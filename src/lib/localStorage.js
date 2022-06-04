@@ -1,7 +1,6 @@
 function getLocalStorage(key) {
     const result = localStorage.getItem(key)
-    console.log(key)
-    console.log(result)
+
     if (!result) {
         return ''
     }
