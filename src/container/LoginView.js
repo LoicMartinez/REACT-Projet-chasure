@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import {Button, Card} from "@mui/material";
-import {useCallback, useState} from "react";
+import {useCallback, useContext, useState} from "react";
 
 import Api from "../api/api";
 import LoginForm from "../components/login/loginForm";
 import PasswordForm from "../components/login/passwordForm";
 import {useNavigate} from "react-router-dom";
-import {injectUser} from "../contexts/userContext";
+import userContext from "../contexts/userContext";
 
 const style = {
     card: {
@@ -19,6 +19,8 @@ const style = {
 }
 
 function LoginView() {
+    const { setAuthenticated } = useContext(userContext);
+
     const navigation = useNavigate();
     const [loginError, setLoginError] = useState(null);
     const [values, setValues] = useState({
@@ -40,10 +42,9 @@ function LoginView() {
                             setLoginError(true);
                         } else {
                             setLoginError(false);
-                            //injectUser({connected:true});
+                            setAuthenticated("true")
                             Api.getCollection().then(response2 => console.log(response2));
                             navigation('/');
-                            //const navigate = useNavigate();
                         }
                     }
                 )

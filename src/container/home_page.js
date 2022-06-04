@@ -6,10 +6,10 @@ function HomePage() {
     const [count, setCount] = useState(0)
 
     return (
-        <Grid container spacing={1} xs={8} flexDirection={"row"}>
-                <card xs={2}>
+        <Grid container spacing={1} flexDirection={"row"}>
+                <Card xs={2}>
                     mama
-                </card>
+                </Card>
                 <Card sx={{ width: 1 }} xs={8}>
                     <Grid item display={"flex"} xs={6}>
                         <Button >

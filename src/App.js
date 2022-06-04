@@ -1,17 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
-import {Button} from "@mui/material";
-import Api from "./api/api.js"
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import HomePage from "./container/home_page";
 import LoginView from "./container/LoginView";
 import MenuAppBar from "./components/navBar/navBar";
+import userContext from "./contexts/userContext";
+import {useContext, useEffect, useState} from "react";
 
 
 function App() {
-  return (
+    const [authenticated, setAuthenticated] = useState(false);
+
+    useEffect(() => {
+        console.log(authenticated)
+    }, [authenticated])
+
+    return (
     <div className="App">
       <header className="App-header">
+          <userContext.Provider value={{ authenticated, setAuthenticated }}>
         <MenuAppBar/>
         <BrowserRouter>
           <Routes>
@@ -20,6 +26,7 @@ function App() {
             <Route path={"/home_page"} element={<HomePage/>}/>
           </Routes>
         </BrowserRouter>
+          </userContext.Provider>
       </header>
     </div>
   );
