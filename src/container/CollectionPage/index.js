@@ -3,12 +3,20 @@ import {useEffect, useState} from "react";
 import SideSearch from "./SideSearch";
 import Api from "../../api/api";
 import ProductPreview from "../../components/ProductPreview";
+import {useNavigate} from "react-router-dom";
+import {currentUserStatus} from "../../lib/currentUserStatus";
 
-function CollectionPage() {
+function CollectionPage({user}) {
+    const navigation = useNavigate();
+
     const [product, setProduct] = useState([])
     const [collection, setCollection] = useState([])
 
     useEffect(() => {
+        if (currentUserStatus(user, false)) { // If the user is not connected, we navigate to '/login'
+            navigation('/login')
+        }
+
         let tempProducts = [];
 
         Api.getCollection()

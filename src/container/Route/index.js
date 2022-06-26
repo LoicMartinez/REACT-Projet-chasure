@@ -12,15 +12,9 @@ export default function RoutePage() {
     return (
         <BrowserRouter>
             <Routes>
-                {!user.isConnected &&
                     <Route path={"/login"} element={<LoginPage/>}/>
-                }
-                {user.isConnected &&
-                    <>
-                        <Route path={"/"} element={<CollectionPage/>}/>
-                        <Route path={"/home_page"} element={<CollectionPage/>}/>
-                    </>
-                }
+                    <Route path={"/"} element={<CollectionPage user={user}/>}/>
+                    <Route path={"/home_page"} element={<CollectionPage/>}/>
             </Routes>
         </BrowserRouter>
 

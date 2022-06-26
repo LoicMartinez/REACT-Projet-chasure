@@ -9,6 +9,7 @@ import PasswordForm from "../../components/login/passwordForm";
 import {useNavigate} from "react-router-dom";
 import userContext from "../../contexts/userContext";
 import User from "../../models/userModel";
+import {currentUserStatus} from "../../lib/currentUserStatus";
 
 const style = {
     card: {
@@ -20,19 +21,21 @@ const style = {
 }
 
 function LoginPage() {
+    const navigation = useNavigate();
     const { user, setUser } = useContext(userContext);
 
-    useEffect(() => {
-        console.log(user)
-    }, [user])
-
-    const navigation = useNavigate();
     const [loginError, setLoginError] = useState(null);
     const [values, setValues] = useState({
         login: "",
         password: "",
         showPassword: false
     });
+
+    useEffect(() => {
+        if (currentUserStatus(user, true)) { // If the user is connected, we navigate to '/'
+            navigation('/')
+        }
+    }, [])
 
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
