@@ -4,7 +4,6 @@ class Client {
     async call(method, endpoint, headers, body) {
         const options = {
             method,
-            credentials: 'same-origin',
             redirect: 'manual',
         };
         headers = headers || {};

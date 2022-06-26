@@ -35,7 +35,7 @@ function LoginPage() {
         if (currentUserStatus(user, true)) { // If the user is connected, we navigate to '/'
             navigation('/')
         }
-    }, [])
+    }, [navigation, user])
 
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
@@ -59,7 +59,7 @@ function LoginPage() {
                 )
             ;
         }
-        , [values, navigation, user]);
+        , [values, navigation, setUser]);
 
     const showLoginError = useCallback(() => {
         if (!loginError) {

@@ -25,7 +25,7 @@ function CollectionPage({user}) {
                     collections.map(collection => tempProducts = [...tempProducts, ...collection.product]);
             })
             .finally(() => setProduct(tempProducts))
-    }, [])
+    }, [navigation, user])
 
     return (
         <Grid

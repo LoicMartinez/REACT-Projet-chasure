@@ -6,8 +6,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import {Grid, Typography} from "@mui/material";
-import {useContext, useState} from "react";
-import userContext from "../../contexts/userContext";
+import {useState} from "react";
 
 function MenuAppBar() {
     const [anchorEl, setAnchorEl] = useState(null);
