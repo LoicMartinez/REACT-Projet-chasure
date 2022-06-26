@@ -1,11 +1,5 @@
 function getLocalStorage(key) {
-    const result = localStorage.getItem(key)
-
-    if (!result) {
-        return ''
-    }
-
-    return result
+    return localStorage.getItem(key)
 }
 
 function setLocalStorage(key, value) {

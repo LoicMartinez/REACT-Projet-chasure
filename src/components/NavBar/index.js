@@ -6,9 +6,10 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import {Grid, Typography} from "@mui/material";
-import {useState} from "react";
+import {useContext, useState} from "react";
+import userContext from "../../contexts/userContext";
 
-function MenuAppBar({user}) {
+function MenuAppBar() {
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleMenu = (event) => {
@@ -18,8 +19,6 @@ function MenuAppBar({user}) {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
-    console.log("mama", user)
 
     return (
         <>
@@ -82,7 +81,7 @@ function MenuAppBar({user}) {
             </AppBar>
             <Toolbar/>
         </>
-    ); // Le dernier composant permet que la navBar ne passe pas par dessus les autres composants
+    ); // Le dernier composant permet que la NavBar ne passe pas par dessus les autres composants
 }
 
 

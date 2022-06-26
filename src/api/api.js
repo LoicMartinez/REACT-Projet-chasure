@@ -37,21 +37,38 @@ class Client {
         );
 
         if (!response.ok) {
+            setLocalStorage('access_token', null)
             return null;
         }
 
         const body = await response.json();
 
+        let userProfile = await this.getProfile(body.userId)
+        userProfile = JSON.stringify(userProfile)
         setLocalStorage('access_token', body.token)
+        setLocalStorage('user', userProfile)
 
-        return true;
+        return userProfile;
     }
 
     async getCollection() {
-        console.log("mama")
         const response = await this.call(
             "GET",
             "/product/collection"
+        )
+
+        if (!response.ok) {
+            return null;
+        }
+
+        return await response.json();
+    }
+
+    async getProfile(userId) {
+        const response = await this.call(
+            "GET",
+            "/user/profile",
+            {userId}
         )
 
         if (!response.ok) {

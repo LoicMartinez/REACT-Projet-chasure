@@ -1,13 +1,14 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import {Button, Card} from "@mui/material";
-import {useCallback, useContext, useState} from "react";
+import {useCallback, useContext, useEffect, useState} from "react";
 
-import Api from "../api/api";
-import LoginForm from "../components/login/loginForm";
-import PasswordForm from "../components/login/passwordForm";
+import Api from "../../api/api";
+import LoginForm from "../../components/login/loginForm";
+import PasswordForm from "../../components/login/passwordForm";
 import {useNavigate} from "react-router-dom";
-import userContext from "../contexts/userContext";
+import userContext from "../../contexts/userContext";
+import User from "../../models/userModel";
 
 const style = {
     card: {
@@ -18,8 +19,12 @@ const style = {
     }
 }
 
-function LoginView() {
-    const { setAuthenticated } = useContext(userContext);
+function LoginPage() {
+    const { user, setUser } = useContext(userContext);
+
+    useEffect(() => {
+        console.log(user)
+    }, [user])
 
     const navigation = useNavigate();
     const [loginError, setLoginError] = useState(null);
@@ -35,6 +40,7 @@ function LoginView() {
 
     const doHandleSubmit = useCallback(
         (evt) => {
+            console.log("callback")
             evt.preventDefault();
             Api.login(values.login, values.password)
                 .then(response => {
@@ -42,15 +48,15 @@ function LoginView() {
                             setLoginError(true);
                         } else {
                             setLoginError(false);
-                            setAuthenticated("true")
-                            Api.getCollection().then(response2 => console.log(response2));
+                            setUser(new User(JSON.parse(response)))
+                            //Api.getCollection().then(response2 => console.log(response2));
                             navigation('/');
                         }
                     }
                 )
             ;
         }
-        , [values, navigation]);
+        , [values, navigation, user]);
 
     const showLoginError = useCallback(() => {
         if (!loginError) {
@@ -85,4 +91,4 @@ function LoginView() {
     )
 }
 
-export default LoginView
+export default LoginPage
