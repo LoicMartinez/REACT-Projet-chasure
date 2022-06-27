@@ -10,7 +10,7 @@ function SideSearch({collection}) {
             display:'flex',
             alignItems: "center",
         }
-    }
+    };
 
     return (
             <Card sx={style.card}>
@@ -20,7 +20,7 @@ function SideSearch({collection}) {
                     </Grid>
                 </Grid>
             </Card>
-    )
+    );
 }
 
-export default SideSearch
+export default SideSearch;

@@ -9,7 +9,7 @@ function ProductDetail() {
         <Button>
             {id}
         </Button>
-    )
+    );
 }
 
-export default ProductDetail
+export default ProductDetail;

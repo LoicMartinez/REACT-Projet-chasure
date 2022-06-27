@@ -6,6 +6,7 @@ class Client {
             method,
             redirect: 'manual',
         };
+
         headers = headers || {};
 
         if (['POST', 'PUT', 'PATCH'].includes(method) && body) {
@@ -19,7 +20,7 @@ class Client {
 
         const bearer = getLocalStorage('access_token');
         if (bearer) {
-            headers['Authorization'] = 'Basic ' + bearer
+            headers['Authorization'] = 'Basic ' + bearer;
         }
 
         options.headers = headers;
@@ -34,21 +35,20 @@ class Client {
             null,
             {email, password}
         );
-        console.log("response.ok")
-        console.log(response.ok)
+
         if (!response.ok) {
-            setLocalStorage('access_token', null)
+            setLocalStorage('access_token', null);
             return null;
         }
 
         const body = await response.json();
 
-        setLocalStorage('access_token', body.token)
+        setLocalStorage('access_token', body.token);
 
-        let userProfile = await this.getProfile(body.userId)
-        userProfile = JSON.stringify(userProfile)
+        let userProfile = await this.getProfile(body.userId);
+        userProfile = JSON.stringify(userProfile);
 
-        setLocalStorage('user', userProfile)
+        setLocalStorage('user', userProfile);
 
         return userProfile;
     }
@@ -57,7 +57,7 @@ class Client {
         const response = await this.call(
             "GET",
             "/product/collection"
-        )
+        );
 
         if (!response.ok) {
             return null;
@@ -80,6 +80,18 @@ class Client {
         return await response.json();
     }
 
+    async getProductDetail(productId) {
+        const response = await this.call(
+            "GET",
+            `product/detail/${productId}`,
+        );
+
+        if (!response.ok) {
+            return null;
+        }
+
+        return await response.json();
+    }
 }
 
 export default new Client();

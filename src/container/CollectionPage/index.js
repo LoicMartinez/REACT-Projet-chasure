@@ -8,12 +8,12 @@ import {useNavigate} from "react-router-dom";
 function CollectionPage({user}) {
     const navigation = useNavigate();
 
-    const [product, setProduct] = useState([])
-    const [collection, setCollection] = useState([])
+    const [product, setProduct] = useState([]);
+    const [collection, setCollection] = useState([]);
 
     useEffect(() => {
         if (!user?.isConnected) { // If the user is not connected, we navigate to '/login'
-            navigation('/login')
+            navigation('/login');
         }
 
         let tempProducts = [];
@@ -26,7 +26,7 @@ function CollectionPage({user}) {
                 }
             })
             .finally(() => setProduct(tempProducts))
-    }, [navigation, user])
+    }, [navigation, user]);
 
     return (
         <Grid
@@ -39,7 +39,7 @@ function CollectionPage({user}) {
                 <SideSearch collection={collection}/>
             </Grid>
             <Grid item xs={6}>
-                {product.map((item) => ProductPreview(item))}
+                {product.map((item) => ProductPreview(item, navigation))}
             </Grid>
         </Grid>
     )

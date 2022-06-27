@@ -9,7 +9,7 @@ function LoginForm({values, onLoginChanged}) {
     return (
         <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
             <InputLabel htmlFor="input-with-icon-adornment">
-                With a start adornment
+                Identifiant
             </InputLabel>
             <Input
                 type="text"
@@ -25,7 +25,7 @@ function LoginForm({values, onLoginChanged}) {
             />
             <FormHelperText error id="component-error-text">Champ vide</FormHelperText>
         </FormControl>
-    )
+    );
 }
 
 export default LoginForm;

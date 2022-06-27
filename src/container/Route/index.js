@@ -14,9 +14,8 @@ export default function RoutePage() {
                 <Route path={"/login"} element={<LoginPage/>}/>
                 <Route path={"/"} element={<CollectionPage user={user}/>}/>
                 <Route path={"/home_page"} element={<CollectionPage/>}/>
-                <Route path={"product-detail:id"} element={<ProductDetail/>}/>
+                <Route path={"product-detail/:id"} element={<ProductDetail/>}/>
             </Routes>
         </BrowserRouter>
-
-    )
+    );
 }

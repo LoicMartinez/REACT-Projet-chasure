@@ -11,24 +11,25 @@ function parseJwt (token) {
 }
 
 function sesseionStatus() {
-    const jwt = getLocalStorage('access_token')
+    const jwt = getLocalStorage('access_token');
 
     if (jwt) {
-        const token = parseJwt(jwt)
-        if (token?.exp < (Date.now() / 100)) {
-            return JSON.parse(getLocalStorage('user'))
-        } else {
-            delLocalStorage('user')
-            delLocalStorage('access_token')
+        const token = parseJwt(jwt);
 
-            return null
+        if (token?.exp > (Date.now() / 1000)) {
+            return JSON.parse(getLocalStorage('user'));
+        } else {
+            delLocalStorage('user');
+            delLocalStorage('access_token');
+
+            return null;
         }
     } else {
-        return null
+        return null;
     }
 }
 
 export {
     parseJwt,
     sesseionStatus
-}
+};

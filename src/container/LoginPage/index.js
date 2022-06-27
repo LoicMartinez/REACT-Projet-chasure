@@ -33,9 +33,9 @@ function LoginPage() {
 
     useEffect(() => {
         if (user.isConnected) { // If the user is connected, we navigate to '/'
-            navigation('/')
+            navigation('/');
         }
-    }, [navigation, user])
+    }, [navigation, user]);
 
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
@@ -50,8 +50,7 @@ function LoginPage() {
                             setLoginError(true);
                         } else {
                             setLoginError(false);
-                            setUser(new User(JSON.parse(response)))
-                            //Api.getCollection().then(response2 => console.log(response2));
+                            setUser(new User(JSON.parse(response)));
                             navigation('/');
                         }
                     }
@@ -90,7 +89,7 @@ function LoginPage() {
             </form>
             {showLoginError()}
         </Card>
-    )
+    );
 }
 
-export default LoginPage
+export default LoginPage;

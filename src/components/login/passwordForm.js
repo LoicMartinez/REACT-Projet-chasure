@@ -21,7 +21,7 @@ function PasswordForm({values, setValues, onPasswordChanged}) {
 
     return (
         <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
-            <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+            <InputLabel htmlFor="standard-adornment-password">Mot de passe</InputLabel>
             <Input
                 id="component-error"
                 error={values.password === ''}
@@ -43,7 +43,7 @@ function PasswordForm({values, setValues, onPasswordChanged}) {
             />
             <FormHelperText error id="component-error-text">Champ vide</FormHelperText>
         </FormControl>
-    )
+    );
 }
 
 export default PasswordForm;

@@ -1,15 +1,15 @@
 function currentUserStatus(user, isConnected=null, isAdmin=null) {
-    let result = false
+    let result = false;
 
     if (isConnected !== null && user?.isConnected === isConnected) {
-        result = true
+        result = true;
     }
 
     if (isConnected !== null && user?.level === 2) {
-        result = true
+        result = true;
     }
 
-    return result
+    return result;
 }
 
-export {currentUserStatus}
+export {currentUserStatus};
