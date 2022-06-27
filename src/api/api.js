@@ -34,7 +34,8 @@ class Client {
             null,
             {email, password}
         );
-
+        console.log("response.ok")
+        console.log(response.ok)
         if (!response.ok) {
             setLocalStorage('access_token', null)
             return null;
@@ -42,9 +43,11 @@ class Client {
 
         const body = await response.json();
 
+        setLocalStorage('access_token', body.token)
+
         let userProfile = await this.getProfile(body.userId)
         userProfile = JSON.stringify(userProfile)
-        setLocalStorage('access_token', body.token)
+
         setLocalStorage('user', userProfile)
 
         return userProfile;

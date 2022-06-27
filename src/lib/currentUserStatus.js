@@ -1,11 +1,11 @@
-function currentUserStatus(user, isConnected=false, isAdmin=false) {
+function currentUserStatus(user, isConnected=null, isAdmin=null) {
     let result = false
 
-    if (isConnected && user?.isConnected === isConnected) {
+    if (isConnected !== null && user?.isConnected === isConnected) {
         result = true
     }
 
-    if (isAdmin && user?.level === 2) {
+    if (isConnected !== null && user?.level === 2) {
         result = true
     }
 

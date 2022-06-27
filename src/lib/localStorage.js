@@ -8,10 +8,16 @@ function setLocalStorage(key, value) {
     } else {
         throw new Error("key or value not valid to set local storage")
     }
+}
 
+function delLocalStorage(key) {
+    if (typeof key === 'string') {
+        localStorage.removeItem(key)
+    }
 }
 
 export {
     getLocalStorage,
-    setLocalStorage
+    setLocalStorage,
+    delLocalStorage
 }

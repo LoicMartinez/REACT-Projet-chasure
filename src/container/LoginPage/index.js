@@ -9,12 +9,12 @@ import PasswordForm from "../../components/login/passwordForm";
 import {useNavigate} from "react-router-dom";
 import userContext from "../../contexts/userContext";
 import User from "../../models/userModel";
-import {currentUserStatus} from "../../lib/currentUserStatus";
 
 const style = {
     card: {
         padding: "50px",
-        justifyContent: "center"
+        justifyContent: "center",
+        marginTop: "50px"
     },
     grid: {
     }
@@ -32,7 +32,7 @@ function LoginPage() {
     });
 
     useEffect(() => {
-        if (currentUserStatus(user, true)) { // If the user is connected, we navigate to '/'
+        if (user.isConnected) { // If the user is connected, we navigate to '/'
             navigation('/')
         }
     }, [navigation, user])
@@ -43,7 +43,6 @@ function LoginPage() {
 
     const doHandleSubmit = useCallback(
         (evt) => {
-            console.log("callback")
             evt.preventDefault();
             Api.login(values.login, values.password)
                 .then(response => {

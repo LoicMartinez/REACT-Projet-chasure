@@ -4,7 +4,6 @@ import SideSearch from "./SideSearch";
 import Api from "../../api/api";
 import ProductPreview from "../../components/ProductPreview";
 import {useNavigate} from "react-router-dom";
-import {currentUserStatus} from "../../lib/currentUserStatus";
 
 function CollectionPage({user}) {
     const navigation = useNavigate();
@@ -13,7 +12,7 @@ function CollectionPage({user}) {
     const [collection, setCollection] = useState([])
 
     useEffect(() => {
-        if (currentUserStatus(user, false)) { // If the user is not connected, we navigate to '/login'
+        if (!user?.isConnected) { // If the user is not connected, we navigate to '/login'
             navigation('/login')
         }
 
@@ -21,8 +20,10 @@ function CollectionPage({user}) {
 
         Api.getCollection()
             .then(collections => {
+                if (collections) {
                     setCollection(collections);
                     collections.map(collection => tempProducts = [...tempProducts, ...collection.product]);
+                }
             })
             .finally(() => setProduct(tempProducts))
     }, [navigation, user])
