@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes, useNavigate} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import CollectionPage from "../CollectionPage";
 import LoginPage from "../LoginPage";
 import {useContext} from "react";

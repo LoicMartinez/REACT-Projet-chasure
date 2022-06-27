@@ -11,7 +11,6 @@ function ProductPreview(product, navigation) {
         }
     };
 
-
     return (
         <Card sx={style.card} xs={8}>
             <Grid container justifyContent={"space-between"} m={3}>

@@ -24,7 +24,8 @@ class Client {
         }
 
         options.headers = headers;
-
+        console.log(endpoint)
+        console.log(options)
         return await fetch(endpoint, options);
     }
 

@@ -1,3 +1,13 @@
+# Deploy on heroku
+
+Deploy have been made with the commande 
+
+### `heroku create acme-react --buildpack mars/create-react-app`
+
+It allows better ram optimization, because of the ram restriction from heroku
+
+For the back end, I use clearDB to host the MySQL database
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
