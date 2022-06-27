@@ -8,7 +8,7 @@ import {sesseionStatus} from "./lib/jwt";
 
 function App() {
     const [user, setUser] = useState(new User(sesseionStatus()));
-
+    console.log(process.env.REACT_APP_NOT_SECRET_CODE)
     return (
      <div className="App">
        <header className="App-header">
