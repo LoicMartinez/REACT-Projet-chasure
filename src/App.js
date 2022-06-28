@@ -2,12 +2,11 @@ import './App.css';
 import MenuAppBar from "./components/NavBar";
 import userContext from "./contexts/userContext";
 import {useState} from "react";
-import User from "./models/userModel";
 import RoutePage from "./container/Route";
 import {sesseionStatus} from "./lib/jwt";
 
 function App() {
-    const [user, setUser] = useState(new User(sesseionStatus()));
+    const [user, setUser] = useState(sesseionStatus());
 
     return (
      <div className="App">

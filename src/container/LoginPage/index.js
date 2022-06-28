@@ -32,7 +32,7 @@ function LoginPage() {
     });
 
     useEffect(() => {
-        if (user.isConnected) { // If the user is connected, we navigate to '/'
+        if (user?.isConnected) { // If the user is connected, we navigate to '/'
             navigation('/');
         }
     }, [navigation, user]);

@@ -6,9 +6,12 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import {Grid, Typography} from "@mui/material";
-import {useState} from "react";
+import {useContext, useState} from "react";
+import userContext from "../../contexts/userContext";
 
 function MenuAppBar() {
+    const { user } = useContext(userContext);
+
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleMenu = (event) => {
@@ -37,12 +40,12 @@ function MenuAppBar() {
                         </Grid>
                         <Grid item display={"flex"} mr={5} alignItems={"center"}>
                             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} color={"black"}>
-                                MARTINEZ Loic
+                                {user? user?.surname + ' ' + user?.firstname : 'mama'}
                             </Typography>
                         </Grid>
                         <Grid item display={"flex"} mr={5} alignItems={"center"}>
                             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} color={"black"}>
-                                Client
+                                {user? user?.level : 'mama'}
                             </Typography>
                         </Grid>
                         <Grid item>

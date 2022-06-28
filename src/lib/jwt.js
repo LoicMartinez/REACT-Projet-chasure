@@ -1,4 +1,5 @@
 import {delLocalStorage, getLocalStorage} from "./localStorage";
+import User from "../models/userModel";
 
 function parseJwt (token) {
     var base64Url = token.split('.')[1];
@@ -17,7 +18,7 @@ function sesseionStatus() {
         const token = parseJwt(jwt);
 
         if (token?.exp > (Date.now() / 1000)) {
-            return JSON.parse(getLocalStorage('user'));
+            return new User(JSON.parse(getLocalStorage('user')));
         } else {
             delLocalStorage('user');
             delLocalStorage('access_token');
